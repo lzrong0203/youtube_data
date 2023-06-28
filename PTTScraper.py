@@ -58,8 +58,9 @@ class PTTScraper:
 
         # Extract post information
         try:
-            content = soup.find(id='main-content').text
-            content = content.split('※ 發信站')[0]
+            if soup.find(id='main-content') is not None:
+                content = soup.find(id='main-content').text
+                content = content.split('※ 發信站')[0]
             if soup.find(class_='article-meta-value') is not None:
                 author = soup.find(class_='article-meta-value').text
                 title = soup.find_all(class_='article-meta-value')[-2].text
